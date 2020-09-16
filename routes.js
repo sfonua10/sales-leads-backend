@@ -42,5 +42,19 @@ router.post("/leads", async (req, res) => {
 //     res.status(500).send()
 //   }
 // })
+router.delete('/leads/:id', async (req, res) => {
+  console.log('req.params.id', req.params.id)
+  try {
+    const lead = await Leads.findByIdAndDelete(req.params.id);
+    console.log('lead', lead)
+    if(!lead) {
+      return res.status(404).send();
+    }
+
+    res.send(lead)
+  } catch(e) {
+    res.status(500).send();
+  }
+})
 
 module.exports = router;

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import KeyBuyingIndicators from "./KeyBuyingIndicators";
+import Modal from "./modal";
 
 const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [executeDelete, setExecuteDelete] = useState(false);
+  const [targetLead, setTargetLead] = useState("");
+
   const handleEligibleLead = (e) => {
     onEligibleLeadChange(e.target.checked);
   };
@@ -14,6 +19,19 @@ const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
     }
     rows.push(lead);
   });
+
+  const handleDelete = () => {
+    fetch(`http://localhost:7777/api/leads/${targetLead}`, {
+      method: "DELETE",
+    });
+
+    window.location.reload();
+  };
+
+  const handleModal = (leadId) => {
+    setTargetLead(leadId);
+    setShowModal(true);
+  };
 
   return (
     <div className="flex-col">
@@ -40,6 +58,9 @@ const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
             </th>
             <th className="border border-gray-400 px-4 py-2 text-gray-800">
               Preferred Contact Method
+            </th>
+            <th className="border border-gray-400 px-4 py-2 text-gray-800">
+              Update/Delete
             </th>
           </tr>
         </thead>
@@ -83,12 +104,24 @@ const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
                 >
                   {lead.preferredContactMethod}
                 </td>
+                <td className="border border-gray-400 px-4 py-2">
+                  <button className="mr-10">U</button>
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleModal(lead._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
       <KeyBuyingIndicators />
+      {showModal ? (
+        <Modal onDelete={handleDelete} onModal={setShowModal} />
+      ) : null}
     </div>
   );
 };
