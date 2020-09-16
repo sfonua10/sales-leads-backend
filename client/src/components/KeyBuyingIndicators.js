@@ -3,8 +3,8 @@ import React from "react";
 const KeyBuyingIndicators = () => {
   return (
     <>
-      <h5 className="mt-8">Information Chart</h5>
-      <table className="justify-end">
+      <table className="m-4">
+        <h5 className="mt-8">Information Chart</h5>
         <tbody>
           <tr>
             <td className="border px-4 py-2 text-center">

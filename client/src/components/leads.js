@@ -1,5 +1,4 @@
 import React from "react";
-import KeyBuyingIndicators from "./KeyBuyingIndicators";
 
 const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
   const handleEligibleLead = (e) => {
@@ -16,8 +15,8 @@ const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
   });
 
   return (
-    <div className="flex-col">
-      <table className="border-separate border-2 border-gray-500">
+    <>
+      <table className="border-separate border-2 border-gray-500 m-4 md:col-span-2">
         <thead>
           <tr>
             <th className="border border-gray-400 px-4 py-2 text-gray-800">
@@ -88,8 +87,7 @@ const Leads = ({ leads, isEligible, onEligibleLeadChange }) => {
           })}
         </tbody>
       </table>
-      <KeyBuyingIndicators />
-    </div>
+    </>
   );
 };
 

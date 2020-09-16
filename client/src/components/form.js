@@ -136,7 +136,7 @@ const Form = ({ onSubmit }) => {
   }
 
   return (
-    <div>
+    <>
       {state.status === "ERROR" && (
         <p
           className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
@@ -146,7 +146,7 @@ const Form = ({ onSubmit }) => {
         </p>
       )}
       <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 border-gray-500"
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 m-4 border-2 border-gray-500"
         onSubmit={handleSubmit}
       >
         <h1 className="text-center mb-3 text-2xl">Add Lead</h1>
@@ -337,7 +337,7 @@ const Form = ({ onSubmit }) => {
           </div>
         </div>{" "}
       </form>
-    </div>
+    </>
   );
 };
 
